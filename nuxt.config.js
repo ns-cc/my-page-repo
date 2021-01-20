@@ -2,15 +2,20 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: '首页',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
     ],
-    script: [
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/page/favicon.ico' }
-    ]
+    script: [],
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: `${process.env.NODE_ENV === 'development'?'':'/page'}/favicon.ico`
+    }]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -53,7 +58,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    publicPath: 'page/',
+    publicPath: process.env.NODE_ENV === 'development' ? '' : 'page/',
     transpile: [/^element-ui/],
   },
   generate: {
