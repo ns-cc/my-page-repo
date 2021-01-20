@@ -1,6 +1,6 @@
 <template>
-  <div v-title data-title="主页">
-    <div @click="handleRouterPush">Hello World!!!</div>
+  <div v-title data-title="Page1">
+    <div @click="handleRouterPush">this is page1</div>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default Vue.extend({
   },
   methods:{
     handleRouterPush(){
-      this.$router.push({ path: '/more-pages/page1' })
+      this.$router.push({ path: '/more-pages/page2' })
     }
   }
 })
