@@ -8,6 +8,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  name: 'index',
   data() {
     return {
 
@@ -15,7 +16,7 @@ export default Vue.extend({
   },
   methods:{
     handleRouterPush(){
-      this.$router.push({ path: '/more-pages/page1' })
+      this.$router.push({ name: 'page1' })
     }
   }
 })

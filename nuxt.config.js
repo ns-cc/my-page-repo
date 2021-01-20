@@ -33,6 +33,10 @@ export default {
     "@/plugins/aos.client"
   ],
 
+  router: {
+    base: process.env.NODE_ENV === 'development' ? '' : 'page/'
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 

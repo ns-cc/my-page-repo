@@ -6,7 +6,7 @@
     "dev": "nuxt --open",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate && powershell ./mv.ps1",
+    "generate": "nuxt generate",
     "move": "powershell PWD && powershell ./mv.ps1"
   },
   "dependencies": {
