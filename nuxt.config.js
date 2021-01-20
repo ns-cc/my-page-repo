@@ -18,6 +18,8 @@ export default {
     'element-ui/lib/theme-chalk/index.css'
   ],
 
+  target: 'static',
+
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '@/plugins/element-ui',
@@ -51,6 +53,7 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    publicPath: '/page/',
     transpile: [/^element-ui/],
   },
   generate: {
