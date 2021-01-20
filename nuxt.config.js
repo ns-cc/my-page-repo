@@ -34,7 +34,7 @@ export default {
   ],
 
   router: {
-    base: process.env.NODE_ENV === 'development' ? '' : 'page/'
+    base: process.env.NODE_ENV === 'development' ? '' : '/page'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
