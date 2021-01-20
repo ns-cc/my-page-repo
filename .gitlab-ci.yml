@@ -1,0 +1,17 @@
+image: node:latest
+# cache:
+#   paths:
+#     - node_modules/
+build_dist:
+  only:
+    - master
+  script:
+    - pwd
+    - rm -rf node_modules
+    - npm install
+    - npm run generate
+    - rm -rf /dist/homepage/*
+    - cp -r dist /dist/homepage/
+    - pwd
+  tags:
+    - my-page-repo
