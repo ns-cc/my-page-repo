@@ -9,7 +9,7 @@ export default {
     script: [
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/page/favicon.ico' }
     ]
   },
 
