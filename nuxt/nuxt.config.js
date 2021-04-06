@@ -1,27 +1,31 @@
+import langs from './i18n/index'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: '首页',
-    meta: [{
-        charset: 'utf-8'
+    meta: [
+      {
+        charset: 'utf-8',
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, initial-scale=1',
       },
     ],
     script: [],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: `${process.env.NODE_ENV === 'development'?'':'/page'}/favicon.ico`
-    }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: `${
+          process.env.NODE_ENV === 'development' ? '' : '/page'
+        }/favicon.ico`,
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    'element-ui/lib/theme-chalk/index.css'
-  ],
+  css: ['element-ui/lib/theme-chalk/index.css'],
 
   target: 'static',
 
@@ -30,11 +34,11 @@ export default {
     '@/plugins/element-ui',
     // '@/plugins/scrollAnimation',
     '@/plugins/setTitle',
-    "@/plugins/aos.client"
+    '@/plugins/aos.client',
   ],
 
   router: {
-    base: process.env.NODE_ENV === 'development' ? '' : '/page'
+    base: process.env.NODE_ENV === 'development' ? '' : '/page',
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -52,7 +56,19 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    'nuxt-i18n',
   ],
+
+  i18n: {
+    locales: ['cn', 'en'],
+    defaultLocale: 'cn',
+    vueI18n: {
+      fallbackLocale: 'cn',
+      messages: {
+        ...langs
+      }
+    }
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
@@ -66,6 +82,6 @@ export default {
     transpile: [/^element-ui/],
   },
   generate: {
-    dir: '../docs'
-  }
+    dir: '../docs',
+  },
 }

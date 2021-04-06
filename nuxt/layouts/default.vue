@@ -1,6 +1,22 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="page-container">
+    <header class="page-header">
+      <div class="header-start"></div>
+      <div class="header-middle"></div>
+      <div class="header-end">
+        <el-dropdown @command="handleChangeLanguage">
+          <span class="lang-btn">
+            {{ $t('language')
+            }}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="cn">中文</el-dropdown-item>
+            <el-dropdown-item command="en">English</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </header>
+    <main class="page-body"><Nuxt /></main>
   </div>
 </template>
 
@@ -11,11 +27,17 @@ export default Vue.extend({
     return {}
   },
   async mounted() {},
-  methods: {},
+  methods: {
+    handleChangeLanguage(val) {
+      this.$i18n.setLocale(val)
+    },
+  },
 })
 </script>
 
 <style lang="less">
+@import '@/assets/css/layout.less';
+@import '@/assets/css/common.less';
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
