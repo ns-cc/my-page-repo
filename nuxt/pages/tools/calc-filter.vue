@@ -24,6 +24,7 @@
     <div class="func-wrapper flex">
       <div class="title">结果:</div>
       <div :style="`${filterResult}`" class="color-box"></div>
+      <span class="desc">{{ countText }}</span>
     </div>
     <div class="func-wrapper flex">
       <span @click="handleClickDuplCss">{{ filterResult }}</span>
@@ -37,7 +38,7 @@
         :disabled="calcLoading"
         @click="handleCalcFilterValue"
       >
-        计算
+        {{ calcLoading ? '计算中..' : '计算' }}
       </button>
     </div>
   </div>
@@ -54,6 +55,7 @@ export default Vue.extend({
       filterResult: '',
       lossMsg: '',
       calcWorker: '',
+      countText: '',
     }
   },
   mounted() {
@@ -62,25 +64,20 @@ export default Vue.extend({
   methods: {
     handleCalcFilterValue() {
       this.calcLoading = true
-      const rgb = hexToRgb(this.inputColor)
-      const color = new Color(rgb[0], rgb[1], rgb[2])
-      const solver = new Solver(color)
-      const result = solver.solve()
-      this.filterResult = result.filter
-      this.calcWorker.postMessage('hehehe')
-      this.calcWorker.onMessage = (event) => {
-        console.log(event.data)
+      this.calcWorker.onmessage = (event) => {
+        this.calcLoading = false
+        this.countText = `共进行了${event.data.calcCount}组计算`
+        if (event.data.resultList.length === 0) {
+          this.countText += ' 未找到较为精确的解'
+          return
+        }
+
+        this.filterResult = event.data.resultList[0].filter
       }
-      if (result.loss < 1) {
-        this.lossMsg = 'This is a perfect result.'
-      } else if (result.loss < 5) {
-        this.lossMsg = 'The is close enough.'
-      } else if (result.loss < 15) {
-        this.lossMsg = 'The color is somewhat off. Consider running it again.'
-      } else {
-        this.lossMsg = 'The color is extremely off. Run it again!'
+      this.calcWorker.onerror = (error) => {
+        console.log(error.message)
       }
-      this.calcLoading = false
+      this.calcWorker.postMessage(this.inputColor)
     },
     handleClickDuplCss() {},
   },
