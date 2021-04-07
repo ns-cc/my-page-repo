@@ -53,7 +53,11 @@ export default Vue.extend({
       calcLoading: false,
       filterResult: '',
       lossMsg: '',
+      calcWorker: '',
     }
+  },
+  mounted() {
+    this.calcWorker = new Worker('workers/calcWorker.js')
   },
   methods: {
     handleCalcFilterValue() {
@@ -63,7 +67,10 @@ export default Vue.extend({
       const solver = new Solver(color)
       const result = solver.solve()
       this.filterResult = result.filter
-
+      this.calcWorker.postMessage('hehehe')
+      this.calcWorker.onMessage = (event) => {
+        console.log(event.data)
+      }
       if (result.loss < 1) {
         this.lossMsg = 'This is a perfect result.'
       } else if (result.loss < 5) {
