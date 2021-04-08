@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/en/tools/pick-number", {data:[{}],fetch:[],mutations:void 0});

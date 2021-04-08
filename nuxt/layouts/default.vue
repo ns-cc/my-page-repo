@@ -22,10 +22,12 @@
 
 <script>
 import Vue from 'vue'
+import commonMixins from '@/mixins/common'
 export default Vue.extend({
   data() {
     return {}
   },
+  mixins: [commonMixins],
   async mounted() {},
   methods: {
     handleChangeLanguage(val) {
